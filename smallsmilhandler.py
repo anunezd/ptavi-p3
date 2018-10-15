@@ -24,27 +24,33 @@ class SmallSMILHandler(ContentHandler):
             self.root['height'] = attrs.get('height', "")
             self.root['background-color'] = attrs.get('background-color', "")
             self.lista.append([name, self.root])
+            self.root = {}
         elif name == 'region':
             self.region['id'] = attrs.get('id', "")
             self.region['top'] = attrs.get('top', "")
             self.region['bottom'] = attrs.get('bottom', "")
-            self.region['left'] = attrs.get('right', "")
+            self.region['left'] = attrs.get('left', "")
+            self.region['right'] = attrs.get('right', "")
             self.lista.append([name, self.region])
+            self.region = {}
         elif name == 'img':
             self.img['src'] = attrs.get('src', "")
             self.img['region'] = attrs.get('region', "")
             self.img['begin'] = attrs.get('begin', "")
             self.img['dur'] = attrs.get('dur', "")
             self.lista.append([name, self.img])
+            self.img = {}
         elif name == 'audio':
             self.audio['src'] = attrs.get('src', "")
             self.audio['begin'] = attrs.get('begin', "")
-            self.audio['fur'] = attrs.get('dur', "")
+            self.audio['dur'] = attrs.get('dur', "")
             self.lista.append([name, self.audio])
+            self.audio = {}
         elif name == 'textstream':
             self.textstream['src'] = attrs.get('src', "")
             self.textstream['region'] = attrs.get('region', "")
             self.lista.append([name, self.textstream])
+            self.textstream = {}
 
     def get_tags(self):
         return self.lista

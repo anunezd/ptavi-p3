@@ -32,12 +32,12 @@ class KaraokeLocal:
     def to_json(self, filesmil, filejson=''):
         if filejson == '':
             filejson = filesmil.replace('.smil', '.json')
-        with open (filejson, 'w') as jsonfile:
+        with open(filejson, 'w') as jsonfile:
             json.dump(self.lista, jsonfile, indent=3)
 
     def do_local(self):
         for elemento in self.lista:
-            etiqueta = elemento [1]
+            etiqueta = elemento[1]
             for atributo in etiqueta:
                 if atributo == 'src':
                     if etiqueta[atributo].startswith('http://'):
@@ -45,6 +45,7 @@ class KaraokeLocal:
                         arch = url.split('/')[-1]
                         urllib.request.urlretrieve(url, arch)
                         etiqueta[atributo] = arch
+
 
 if __name__ == "__main__":
 
